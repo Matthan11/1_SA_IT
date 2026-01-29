@@ -38,7 +38,7 @@ class Room:
         light_text = font.render(
             f"Licht: {self.light_level}%",
             True,
-            (0, 0, 0)
+            (255, 0, 0)
         )
         surface.blit(
             light_text,
@@ -59,7 +59,7 @@ class Room:
         percent_text = font.render(
             f"{percent}%",
             True,
-            (0, 0, 0)
+            (255, 0, 0)
         )
 
         text_x = self.window.right + 10
