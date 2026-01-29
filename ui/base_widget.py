@@ -3,7 +3,6 @@
 
 
 import pygame
-from logging_system import write_log
 import config
 
 # Raum-Klasse
@@ -14,20 +13,7 @@ class Room:
         self.light_on = True
         self.rollo_height = 0
         self.name = name
-
-    def toggle_light(self, user):
-        self.light_on = not self.light_on
-        action = f"{self.name}: Licht {'AN' if self.light_on else 'AUS'}"
-        write_log(user, action)
-
-    def rollo_up(self, user):
-        self.rollo_height = max(0, self.rollo_height - 5)
-        write_log(user, f"{self.name}: Rollo hoch")
-
-    def rollo_down(self, user):
-        self.rollo_height = min(self.window.height, self.rollo_height + 5)
-        write_log(user, f"{self.name}: Rollo runter")
-
+    
     def draw(self, surface):
         pygame.draw.rect(surface, config.FLOOR, self.rect)
         pygame.draw.rect(surface, config.WALL, self.rect, 4)

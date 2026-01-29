@@ -31,7 +31,7 @@ def main():
 
                 # Raum-Aktionen
                 if target in rooms:
-                    getattr(rooms[target],action)(current_user)
+                    action(rooms[target], current_user)
 
             # Benutzer wechseln
                 elif target == "user":
