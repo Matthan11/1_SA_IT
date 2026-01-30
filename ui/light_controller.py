@@ -1,7 +1,7 @@
 # Hier nur die Lichtsteurung
 
 from logging_system import write_log
-from utils import clamp
+from utils import clamp_light
 
 
 STEP = 10  # Prozent-Schritte
@@ -15,9 +15,9 @@ def control_light(room, action, user):
     user: aktueller Benutzer
     """
     if action == "up":
-        room.light_level = clamp(room.light_level + 10)
+        room.light_level = clamp_light(room.light_level + 10)
     elif action == "down":
-        room.light_level = clamp(room.light_level - 10)
+        room.light_level = clamp_light(room.light_level - 10)
     elif action == "on":
         room.light_level = 100
     elif action == "off":

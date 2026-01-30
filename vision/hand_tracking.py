@@ -85,7 +85,7 @@ def draw_help(screen, font, state):
     """
     Zeichnet die Hilfe-Anzeige rechts im Fenster
     """
-    x, y = 850, 100
+    x, y = 850, 400
 
     if state == USER_SELECT:
         lines = [
