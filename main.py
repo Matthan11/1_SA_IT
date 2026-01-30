@@ -5,6 +5,7 @@ from vision.hand_tracking_neu import get_gesture_action
 from ui.light_controller import control_light
 from ui.shutter_controller import control_shutter
 
+
 def main():
     pygame.init()
 
@@ -32,7 +33,7 @@ def main():
             current_user, selected_room
         )
 
-        if handshape and selected_room:
+        if current_user and handshape and selected_room:
             room = rooms.get(selected_room)
 
             if room:

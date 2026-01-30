@@ -1,7 +1,7 @@
 # Hier kommen Konstanten und Einstellungen rein
 # Modularisierung, Wartbarkeit, Saubere Struktur, Trennung von Logik & Konfiguration
 
-import pygame
+# import pygame
 # from ui.light_controller import dim_up, dim_down,toggle_light
 # from ui.shutter_controller import rollo_up, rollo_down, toggle_close
 
@@ -23,7 +23,7 @@ BACKGROUND = (50, 50, 50)
 FONT_SIZE = 36
 
 # Benutzer
-DEFAULT_USER = "user_a"
+DEFAULT_USER = None
 
 # -------------------------
 # TASTENBELEGUNG
