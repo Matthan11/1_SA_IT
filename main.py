@@ -93,11 +93,11 @@ while running:
             rooms,
         )
     # === AKTIVEN AVATAR SETZEN ===
-for avatar in avatars.values():
-    avatar.active = False
+    for avatar in avatars.values():
+        avatar.active = False
 
-if current_user in avatars:
-    avatars[current_user].active = True
+    if current_user in avatars:
+        avatars[current_user].active = True
 
     # ---------- HINTERGRUND ----------
     screen.fill(config.BACKGROUND)
