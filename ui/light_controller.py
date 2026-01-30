@@ -1,6 +1,6 @@
 # Hier nur die Lichtsteurung
 
-from ALT.hand_tracking_alt import clamp
+from vision.hand_tracking_neu import clamp
 from logging_system import write_log
 
 

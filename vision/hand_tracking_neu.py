@@ -33,6 +33,9 @@ def fingers_up(hand):
 
     return fingers
 
+def clamp(value):
+    return max(0, min(100, value))
+
 def detect_handshape(f):
     if f == [0,0,0,0,0]:
         return "fist"

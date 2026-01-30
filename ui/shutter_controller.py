@@ -1,7 +1,7 @@
 # Hier nur Rollosteuerung
 
 from logging_system import write_log
-from ALT.hand_tracking_alt import clamp
+from vision.hand_tracking_neu import clamp
 
 STEP = 5 # Umgerechnet sind das 10 %
 
