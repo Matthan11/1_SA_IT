@@ -46,10 +46,10 @@ def detect_handshape(f, hand=None):
         return "index"
     if f == [0,1,1,0,0]:
         return "index_middle"
-        if f == [1,0,0,0,0]:  # Daumen
-            if hand and hand.landmark[4].y > hand.landmark[2].y:  # <-- NEU: Daumen runter
-                return "thumb_down"
-            else:
+    if f == [1,0,0,0,0]:  # Daumen
+        if hand and hand.landmark[4].y > hand.landmark[2].y:  # <-- NEU: Daumen runter
+            return "thumb_down"
+        else:
                 return "thumb_up"
     if f == [1,1,0,0,0]:
         return "thumb_index"
@@ -113,12 +113,8 @@ def draw_help(screen, font, state):
 # ================= Hauptfunktion =================
 cap = cv2.VideoCapture(0)
 
-def get_gesture_action(state, current_user, selected_room):
+def get_gesture_action(state, current_user, selected_room, handshape):
     global last_action_time
-
-    ret, frame = cap.read()
-    if not ret:
-        return state, current_user, selected_room, None
 
     frame = cv2.flip(frame, 1)
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

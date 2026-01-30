@@ -1,15 +1,18 @@
-import pygame
-import cv2
-import mediapipe as mp
-import time
+# ------------------ IMPORTS ------------------
+import pygame              # UI / Fenster
+import cv2                 # Kamera
+import mediapipe as mp     # Handtracking
+import time                # Cooldown-Zeit
 
-import config
+import config              # Zentrale Konfiguration
+
+# UI-Module
 from ui.base_widget import create_rooms
-from ui.light_controller import control_light
-from ui.shutter_controller import control_shutter
+
+# Gesten- & State-Logik
 from vision.hand_tracking import (
-    get_gesture_action,
-    draw_help,
+    get_gesture_action,    # Zentrale State-Machine
+    draw_help,             # Overlay rechts
     USER_SELECT,
     ROOM_SELECT,
     CONTROL_SELECT,
@@ -19,100 +22,87 @@ from vision.hand_tracking import (
     fingers_up
 )
 
-# ----------------- Kamera für Live-Feed -----------------
+# ------------------ KAMERA ------------------
+# Kamera wird EINMAL geöffnet (wichtig!)
 cap = cv2.VideoCapture(0)
+
+# MediaPipe Initialisierung
 mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.7, min_tracking_confidence=0.7)
+hands = mp_hands.Hands(
+    max_num_hands=1,
+    min_detection_confidence=0.7,
+    min_tracking_confidence=0.7
+)
 
-# ----------------- Main-Funktion -----------------
+# ------------------ HAUPTPROGRAMM ------------------
 def main():
-    pygame.init()
+    pygame.init()  # Startet Pygame
 
+    # Fenster erstellen
     screen = pygame.display.set_mode((config.WIDTH, config.HEIGHT))
     pygame.display.set_caption(config.WINDOW_TITLE)
+
+    # Schrift & Clock
     font = pygame.font.SysFont(None, config.FONT_SIZE)
     clock = pygame.time.Clock()
 
-    # ----------------- Initialzustände -----------------
-    current_user = config.DEFAULT_USER
+    # ----------- STARTZUSTÄNDE -----------
+    current_user = None
     selected_room = None
     state = USER_SELECT
+
     rooms = create_rooms()
+
     last_action_time = 0
-    COOLDOWN = 1.0  # Sekunden
+    COOLDOWN = 1.0
 
     running = True
     while running:
-        # -------- Pygame Events --------
+
+        # ----------- EVENTS -----------
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
-        # -------- Kamera lesen & Gesten erkennen --------
+        # ----------- KAMERALESEN -----------
         ret, frame = cap.read()
+        handshape = None
+
         if ret:
             frame = cv2.flip(frame, 1)
             rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             result = hands.process(rgb)
 
-            handshape = None
             if result.multi_hand_landmarks:
                 hand = result.multi_hand_landmarks[0]
-                handshape = detect_handshape(fingers_up(hand), hand)
+                handshape = detect_handshape(
+                    fingers_up(hand),
+                    hand
+                )
+
+                # Cooldown prüfen
                 now = time.time()
                 if now - last_action_time > COOLDOWN:
-                    # State-Maschine
                     state, current_user, selected_room, _ = get_gesture_action(
-                        state, current_user, selected_room
+                        state,
+                        current_user,
+                        selected_room,
+                        handshape
                     )
                     last_action_time = now
 
-        # -------- UI Zeichnen --------
+        # ----------- UI ZEICHNEN -----------
         screen.fill(config.BACKGROUND)
 
-        # ----------------- State-Hervorhebung -----------------
-        state_colors = {
-            USER_SELECT: (0, 255, 0),        # grün
-            ROOM_SELECT: (255, 255, 0),      # gelb
-            CONTROL_SELECT: (0, 255, 255),   # cyan
-            LIGHT_CONTROL: (255, 0, 0),      # rot
-            SHUTTER_CONTROL: (0, 0, 255)     # blau
-        }
-        pygame.draw.rect(screen, state_colors.get(state, (255, 255, 255)), (10, 10, 200, 50))
-
-        # ----------------- Räume -----------------
         for room in rooms.values():
             room.draw(screen, font)
 
-        # ----------------- Overlay -----------------
         draw_help(screen, font, state)
-
-        # ----------------- Aktueller Benutzer & Raum -----------------
-        user_text = font.render(f"Aktueller Benutzer: {current_user or 'Nicht eingeloggt'}",
-                                True, (255, 255, 255))
-        screen.blit(user_text, (20, 20))
-
-        if selected_room:
-            room_text = font.render(f"Aktiver Raum: {selected_room}",
-                                    True, (255, 255, 0))
-            screen.blit(room_text, (20, 60))
-
-        # ----------------- Aktuelle erkannte Geste -----------------
-        gesture_text = font.render(f"Geste erkannt: {handshape or 'keine'}",
-                                   True, (0, 255, 255))
-        screen.blit(gesture_text, (20, 90))
-
-        # ----------------- Live-Kamera-Vorschau -----------------
-        if ret:
-            frame_small = cv2.resize(frame, (320, 240))
-            frame_small = cv2.cvtColor(frame_small, cv2.COLOR_BGR2RGB)
-            frame_surface = pygame.surfarray.make_surface(frame_small.swapaxes(0, 1))
-            screen.blit(frame_surface, (config.WIDTH - 330, 10))  # rechts oben
 
         pygame.display.flip()
         clock.tick(config.FPS)
 
-    # -------- Cleanup --------
+    # ----------- AUFRÄUMEN -----------
     cap.release()
     pygame.quit()
 
