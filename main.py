@@ -4,6 +4,9 @@ import mediapipe as mp
 
 import config
 
+# Avatare
+from avatars import Avatar
+
 # UI
 from ui.base_widget import create_rooms
 
@@ -45,6 +48,28 @@ selected_room = None       # Kein Raum gewählt
 # Räume erzeugen
 rooms = create_rooms()
 
+# ================= AVATARE =================
+
+user1_avatar = Avatar(
+    name="User 1",
+    color=(0, 160, 255),
+    position=(120, 140),
+    style="hair"
+)
+
+user2_avatar = Avatar(
+    name="User 2",
+    color=(255, 120, 0),
+    position=(280, 140),
+    style="cap"
+)
+
+avatars = {
+    "User 1": user1_avatar,
+    "User 2": user2_avatar
+}
+
+
 # ================= HAUPTSCHLEIFE =================
 
 running = True
@@ -67,6 +92,12 @@ while running:
             frame,
             rooms,
         )
+    # === AKTIVEN AVATAR SETZEN ===
+for avatar in avatars.values():
+    avatar.active = False
+
+if current_user in avatars:
+    avatars[current_user].active = True
 
     # ---------- HINTERGRUND ----------
     screen.fill(config.BACKGROUND)
@@ -86,9 +117,13 @@ while running:
     )
     screen.blit(user_text, (20, 20))
 
+    # ---------- AVATARE ZEICHNEN ----------
+    for avatar in avatars.values():
+        avatar.draw(screen, font)
+
     if selected_room:
         room_text = font.render(
-            f"Aktueller Raum: {selected_room}",
+            f"Aktueller Raum: {selected_room.name}",
             True,
             (255, 255, 0)
         )
