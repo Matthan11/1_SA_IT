@@ -7,7 +7,7 @@ import config
 from ui.base_widget import create_rooms
 from ui.light_controller import control_light
 from ui.shutter_controller import control_shutter
-from vision.hand_tracking_neu import (
+from vision.hand_tracking import (
     get_gesture_action,
     draw_help,
     USER_SELECT,
