@@ -3,7 +3,7 @@
 
 
 import pygame
-import config
+import config as config
 
 # RAUM-KLASSE
 class Room:

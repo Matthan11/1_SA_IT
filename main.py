@@ -1,5 +1,5 @@
 import pygame
-import config
+import config as config
 from ui.base_widget import create_rooms
 from vision.hand_tracking_neu import get_gesture_action
 from ui.light_controller import control_light
