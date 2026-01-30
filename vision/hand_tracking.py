@@ -16,6 +16,7 @@ hands = mp_hands.Hands(
     min_tracking_confidence=0.7       # Mindest-Tracking-Stabilität
 )
 
+
 # ================= STATES =================
 # Zustände der State-Machine
 USER_SELECT = "user_select"
@@ -148,6 +149,10 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
     """
     global last_action_time
 
+    # Kein Bild --> nichts tun
+    if frame is None:
+        return state, current_user, selected_room, None
+
     # Bild spiegeln (natürliche Bewegung)
     frame = cv2.flip(frame, 1)
 
@@ -158,73 +163,107 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
     now = time.time()
 
     # Keine Hand oder Cooldown aktiv --> nichts tun
-    if not result.multi_hand_landmarks or now - last_action_time < COOLDOWN:
+    if not result.multi_hand_landmarks:
         return state, current_user, selected_room, None
 
     # Erste erkannte Hand verwenden
     hand = result.multi_hand_landmarks[0]
+    hand_label = result.multi_handedness[0].classification[0].label  # 'Left' oder 'Right'
 
-    # Geste erkennen
-    handshape = detect_handshape(fingers_up(hand), hand)
+    # Geste erk
+    f = fingers_up(hand)
+
+    # Daumen horizontal korrigieren je nach Hand
+    if hand_label == "Right":
+        f[0] = 1 if hand.landmark[4].x < hand.landmark[3].x else 0
+    else:
+        f[0] = 1 if hand.landmark[4].x > hand.landmark[3].x else 0
+
+    handshape = detect_handshape(f, hand)
+
+    action_taken = False  # Tracken, ob wir etwas tun -> Cooldown setzen
 
     # ================= STATE MACHINE =================
     if state == USER_SELECT:
         if handshape == "index":
             current_user = "User 1"
-            write_log(current_user,f"login{current_user}")
+            write_log(current_user, f"login {current_user}")
             state = ROOM_SELECT
+            action_taken = True
         elif handshape == "index_middle":
             current_user = "User 2"
+            write_log(current_user, f"login {current_user}")
             state = ROOM_SELECT
+            action_taken = True
 
     elif state == ROOM_SELECT:
         if handshape == "index":
-            selected_room = rooms["room_1"]   # <-- Objekt
+            selected_room = rooms.get("room_1")
+            write_log(current_user, f"{current_user} selected {selected_room.name}")
             state = CONTROL_SELECT
+            action_taken = True
 
         elif handshape == "index_middle":
-            selected_room = rooms["room_2"]   # <-- Objekt
+            selected_room = rooms.get("room_2")
+            write_log(current_user, f"{current_user} selected {selected_room.name}")
             state = CONTROL_SELECT
+            action_taken = True
 
-        elif handshape in ("thumb_middle"):
+        elif handshape == "thumb_middle":
+            write_log(current_user, f"{current_user} returned to USER_SELECT")
             state = USER_SELECT
             current_user = None
             selected_room = None
+            action_taken = True
 
     elif state == CONTROL_SELECT:
         if handshape == "index":
             state = LIGHT_CONTROL
+            action_taken = True
         elif handshape == "index_middle":
             state = SHUTTER_CONTROL
+            action_taken = True
         elif handshape == "middle":
             state = ROOM_SELECT
             selected_room = None
+            action_taken = True
 
     elif state == LIGHT_CONTROL:
         if handshape == "index":
             control_light(selected_room, "up", current_user)
+            action_taken = True
         elif handshape == "index_middle":
             control_light(selected_room, "down", current_user)
+            action_taken = True
         elif handshape == "open":
             control_light(selected_room, "off", current_user)
+            action_taken = True
         elif handshape == "pinky":
             control_light(selected_room, "on", current_user)
+            action_taken = True
         elif handshape == "middle":
             state = CONTROL_SELECT
+            action_taken = True
 
     elif state == SHUTTER_CONTROL:
         if handshape == "index":
             control_shutter(selected_room, "up", current_user)
+            action_taken = True
         elif handshape == "index_middle":
             control_shutter(selected_room, "down", current_user)
+            action_taken = True
         elif handshape == "open":
             control_shutter(selected_room, "open", current_user)
+            action_taken = True
         elif handshape == "pinky":
             control_shutter(selected_room, "close", current_user)
+            action_taken = True
         elif handshape == "middle":
             state = CONTROL_SELECT
+            action_taken = True
 
-    # Cooldown-Zeit merken
-    last_action_time = now
+    # Cooldown nur setzen, wenn tatsächlich eine Aktion ausgeführt wurde
+    if action_taken:
+       last_action_time = now
 
     return state, current_user, selected_room, handshape
