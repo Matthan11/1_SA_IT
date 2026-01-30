@@ -5,6 +5,7 @@ import time
 # Steuerungsmodule
 from ui.light_controller import control_light
 from ui.shutter_controller import control_shutter
+from logging_system import write_log
 
 # ================= MediaPipe =================
 # Initialisierung der Handerkennung (KEINE Kamera hier!)
@@ -170,6 +171,7 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
     if state == USER_SELECT:
         if handshape == "index":
             current_user = "User 1"
+            write_log(current_user,f"login{current_user}")
             state = ROOM_SELECT
         elif handshape == "index_middle":
             current_user = "User 2"
