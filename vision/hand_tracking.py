@@ -182,6 +182,14 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
     handshape = detect_handshape(f, hand)
     last_action_time = now
 
+    now = time.time()
+    if now - last_action_time < COOLDOWN:
+        return state, current_user, selected_room, handshape
+    
+    if action_taken:
+        last_action_time = time.time()
+
+
     action_taken = False  # Tracken, ob wir etwas tun -> Cooldown setzen
 
     # ================= STATE MACHINE =================
