@@ -180,6 +180,7 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
         f[0] = 1 if hand.landmark[4].x > hand.landmark[3].x else 0
 
     handshape = detect_handshape(f, hand)
+    last_action_time = now
 
     action_taken = False  # Tracken, ob wir etwas tun -> Cooldown setzen
 
