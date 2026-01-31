@@ -26,7 +26,7 @@ LIGHT_CONTROL = "light_control"
 SHUTTER_CONTROL = "shutter_control"
 
 # Cooldown gegen Mehrfachauslösung
-COOLDOWN = 1.2
+COOLDOWN = 2
 last_action_time = 0
 
 
@@ -147,7 +147,7 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
     Zentrale Zustandslogik
     frame kommt aus main (keine Kamera hier!)
     """
-    global last_action_time
+    global last_action_time, COOLDOWN
 
     # Kein Bild --> nichts tun
     if frame is None:
