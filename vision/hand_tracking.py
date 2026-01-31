@@ -147,7 +147,7 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
     Zentrale Zustandslogik
     frame kommt aus main (keine Kamera hier!)
     """
-    global last_action_time, COOLDOWN
+    global last_action_time
 
     # Kein Bild --> nichts tun
     if frame is None:
