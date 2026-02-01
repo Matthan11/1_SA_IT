@@ -26,7 +26,7 @@ LIGHT_CONTROL = "light_control"
 SHUTTER_CONTROL = "shutter_control"
 
 # Cooldown gegen Mehrfachauslösung
-COOLDOWN = 5
+COOLDOWN = 1.2
 last_action_time = 0
 
 
@@ -78,6 +78,9 @@ def detect_handshape(f, hand=None):
 
     if f == [1,0,1,0,0]:    # Daumen und Mittelfinger
         return "thumb_middle"
+    
+    if f == [1,0,1,0,1]:    # Daumen, Mittel- und Kleinerfinger
+        return "thumb_middle_pinky"
 
     return "other"
 
@@ -101,7 +104,7 @@ def draw_help(screen, font, state):
             "RAUM WAHL:",
             "Zeigefinger --> Raum 1",
             "Zeige- & Mittelfinger --> Raum 2",
-            "Daumen und Mittelfinger --> Zurück"
+            "Daumen , Mittel- und Kleinerfinger --> Zurück"
         ]
 
     elif state == CONTROL_SELECT:
@@ -109,7 +112,7 @@ def draw_help(screen, font, state):
             "STEUERUNG:",
             "Zeigefinger --> Licht",
             "Zeige- & Mittelfinger --> Rollo",
-            "Mittelfinger --> Zurück"
+            "Daumen und Mittelfinger --> Zurück"
         ]
 
     elif state == LIGHT_CONTROL:
@@ -161,6 +164,9 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
     result = hands.process(rgb)
 
     now = time.time()
+    # Cooldown aktiv → nichts tun
+    if now - last_action_time < COOLDOWN:
+        return state, current_user, selected_room, None
 
     # Keine Hand oder Cooldown aktiv --> nichts tun
     if not result.multi_hand_landmarks:
@@ -180,7 +186,6 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
         f[0] = 1 if hand.landmark[4].x > hand.landmark[3].x else 0
 
     handshape = detect_handshape(f, hand)
-    last_action_time = now
 
 
 
@@ -213,7 +218,7 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
             state = CONTROL_SELECT
             action_taken = True
 
-        elif handshape == "thumb_middle":
+        elif handshape == "thumb_middle_pinky":
             write_log(current_user, f"{current_user} returned to USER_SELECT")
             state = USER_SELECT
             current_user = None
@@ -227,7 +232,7 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
         elif handshape == "index_middle":
             state = SHUTTER_CONTROL
             action_taken = True
-        elif handshape == "middle":
+        elif handshape == "thumb_middle":
             state = ROOM_SELECT
             selected_room = None
             action_taken = True
@@ -268,6 +273,6 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
 
     # Cooldown nur setzen, wenn tatsächlich eine Aktion ausgeführt wurde
     if action_taken:
-       last_action_time = now
+        last_action_time = now
 
     return state, current_user, selected_room, handshape
