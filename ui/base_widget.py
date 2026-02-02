@@ -1,3 +1,4 @@
+# Erstellt von Jannik Langhammer
 # Erzeugen des Raumes
 
 import pygame
@@ -73,7 +74,7 @@ class Room:
         )
 
         # ================= TÜR =================
-        self._draw_door(surface)
+        self.draw_door(surface)
 
     # ================= MÖBEL =================
 
@@ -120,7 +121,7 @@ class Room:
     def _draw_kitchen(self, surface):
         # Küchenzeile direkt neben dem Fenster
         kitchen_rect = pygame.Rect(
-            self.window.right + 10,
+            self.window.right + 100,
             self.window.y,
             180,
             50
@@ -136,7 +137,7 @@ class Room:
     def _draw_couch(self, surface):
         # Couch gegenüber vom Fenster (unten im Raum)
         couch_rect = pygame.Rect(
-            self.rect.centerx - 200,
+            self.rect.centerx - 300,
             self.rect.bottom - 80,
             160,
             60
@@ -155,16 +156,29 @@ class Room:
 
         pygame.draw.rect(surface, (120, 70, 70), backrest)
 
-    def _draw_door(self, surface):
-        # Tür mittig rechts zwischen den beiden Räumen
-        door_height = 60
+    def draw_door(self, surface):
+        # Tür mittig rechts in der Küche
+        if self.name == "Kitchen":
+            door_height = 60
 
-        door_rect = pygame.Rect(
-            self.rect.right - 4,
-            self.rect.centery - door_height // 2,
-            8,
-            door_height
-        )
+            door_rect = pygame.Rect(
+                self.rect.right - 4,
+                self.rect.centery - door_height // 2,
+                8,
+                door_height
+            )
+
+        # Tür zwischen beiden Räumen
+        if self.name == "Sleepingroom":
+
+            door_width = 60
+
+            door_rect = pygame.Rect(
+                self.rect.centerx - door_width // 2,
+                self.rect.y - 4,
+                door_width,
+                8
+            )
 
         pygame.draw.rect(surface, (160, 160, 160), door_rect)
 
