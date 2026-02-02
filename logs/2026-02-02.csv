@@ -44,3 +44,27 @@ User 2,login User 2,2026-02-02,09:20:33
 User 2,User 2 returned to USER_SELECT,2026-02-02,09:20:38
 User 1,login User 1,2026-02-02,09:20:40
 User 1,User 1 selected Kitchen,2026-02-02,09:20:42
+User 2,login User 2,2026-02-02,09:30:09
+User 1,login User 1,2026-02-02,09:40:37
+User 1,User 1 selected Kitchen,2026-02-02,09:40:39
+User 1,"Kitchen: Light up, now 10%",2026-02-02,09:40:42
+User 1,"Kitchen: Light up, now 20%",2026-02-02,09:40:44
+User 1,"Kitchen: Light up, now 30%",2026-02-02,09:40:45
+User 1,"Kitchen: Light up, now 40%",2026-02-02,09:40:46
+User 1,"Kitchen: Light down, now 30%",2026-02-02,09:40:47
+User 1,"Kitchen: Light down, now 20%",2026-02-02,09:40:49
+User 1,"Kitchen: Light on, now 100%",2026-02-02,09:40:50
+User 1,"Kitchen: Light off, now 0%",2026-02-02,09:40:51
+User 1,"Kitchen: Light up, now 10%",2026-02-02,09:40:56
+User 1,"Kitchen: Light up, now 20%",2026-02-02,09:40:57
+User 1,"Kitchen: Light down, now 10%",2026-02-02,09:40:58
+User 1,User 1 returned to USER_SELECT,2026-02-02,09:41:02
+User 1,login User 1,2026-02-02,09:41:04
+User 1,User 1 returned to USER_SELECT,2026-02-02,09:41:06
+User 1,login User 1,2026-02-02,09:41:13
+User 1,User 1 returned to USER_SELECT,2026-02-02,09:41:15
+User 1,login User 1,2026-02-02,09:41:16
+User 1,User 1 selected Sleepingroom,2026-02-02,09:41:18
+User 1,User 1 returned to USER_SELECT,2026-02-02,09:41:21
+User 2,login User 2,2026-02-02,09:41:24
+User 2,User 2 selected Kitchen,2026-02-02,09:41:27
