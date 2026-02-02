@@ -196,13 +196,13 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
     action_taken = False  # Tracken, ob wir etwas tun -> Cooldown setzen
 
     # ================= STATE MACHINE =================
-    if state == USER_SELECT:                                        #Userauswahl
-        if handshape == "index":                                    #wenn Zeigefinger dann User 1 und zur Raumauswahl
+    if state == USER_SELECT:                                        # Userauswahl
+        if handshape == "index":                                    # wenn Zeigefinger dann User 1 und zur Raumauswahl
             current_user = "User 1"
             write_log(current_user, f"login {current_user}")
             state = ROOM_SELECT
             action_taken = True
-        elif handshape == "index_middle":                           #wenn Zeigefinger und Mittelfinger dann User 2 und zur Raumauswahl
+        elif handshape == "index_middle":                           # wenn Zeigefinger und Mittelfinger dann User 2 und zur Raumauswahl
             current_user = "User 2"
             write_log(current_user, f"login {current_user}")
             state = ROOM_SELECT

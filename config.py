@@ -1,3 +1,4 @@
+# Erstellt von Jannik Langhammer
 # Hier kommen Konstanten und Einstellungen rein
 # Modularisierung, Wartbarkeit, Saubere Struktur, Trennung von Logik & Konfiguration
 
