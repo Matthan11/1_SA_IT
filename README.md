@@ -205,5 +205,5 @@ Dies sorgt für eine saubere Trennung von Logik und Einstellungen.
 
 Optionales Test- und Debug-Modul:
 
-* Anzeige des Kamerabildes mit eingezeichneten Hand-Landmarks
+* Anzeige des Kamerabildes
 * Wird nicht im Hauptprogramm benötigt

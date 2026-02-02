@@ -1,4 +1,5 @@
 # Erstellt von Jannik Langhammer
+# 25.01.2026
 # Hier kommen Konstanten und Einstellungen rein
 # Modularisierung, Wartbarkeit, Saubere Struktur, Trennung von Logik & Konfiguration
 

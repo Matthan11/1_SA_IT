@@ -1,3 +1,7 @@
+# Erstellt von Jannik Langhammer
+# 23.01.2026
+# Hier wird eine CSV-Datei erstellt
+ 
 import csv
 from datetime import datetime
 import os

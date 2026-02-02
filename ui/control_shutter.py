@@ -1,4 +1,5 @@
 # Erstellt von Jannik Langhammer
+# 31.01.2026
 # Hier nur Rollosteuerung
 
 from logging_system import write_log

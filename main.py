@@ -1,4 +1,6 @@
 # Ertellt von Jannik Langhammer und Nico Lippl
+# 02.02.2026
+# Hier wird das gesamte Programm gesteuert
 
 import pygame
 import cv2

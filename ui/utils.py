@@ -1,4 +1,5 @@
 # Erstellt von Jannik Langhammer
+# 31.01.2026
 # Hier werden nur die Minimal und Maximal werte definiert, welche für die Steuerungen benutzt werden
 
 def clamp_shutter(value):   # Maximal und Minimal wert des Rollos 

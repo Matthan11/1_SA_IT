@@ -1,3 +1,7 @@
+# Erstellt von Nico Lippl
+# 31.01.2026
+# Erzeugt das Kamerabild oben rechts im Fenster
+
 import cv2
 import mediapipe as mp
 

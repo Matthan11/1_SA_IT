@@ -1,4 +1,5 @@
 # Erstellt von Jannik Langhammer und Nico Lippl
+# 01.02.2026
 # Hier werden die Avatare erzeugt
 
 import pygame
