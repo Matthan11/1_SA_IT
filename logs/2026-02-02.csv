@@ -85,6 +85,7 @@ User 2,User 2 selected Kitchen,2026-02-02,09:41:27
 =======
 >>>>>>> 7e514b0ffeee558bbd039d473ff8f94cee900fd2
 >>>>>>> 169c713c4bfc93e18d9c39a8fb6fa18fdbf54b61
+<<<<<<< HEAD
 User 1,login User 1,2026-02-02,09:44:47
 User 1,User 1 selected Kitchen,2026-02-02,09:44:49
 User 1,"Kitchen: Light up, now 10%",2026-02-02,09:44:53
@@ -102,3 +103,13 @@ User 2,User 2 selected Sleepingroom,2026-02-02,09:46:59
 User 2,"Sleepingroom: Light on, now 100%",2026-02-02,09:47:05
 User 2,"Sleepingroom: Light down, now 90%",2026-02-02,09:47:09
 User 2,User 2 returned to USER_SELECT,2026-02-02,09:47:16
+=======
+User 2,login User 2,2026-02-02,09:48:06
+User 2,User 2 selected Sleepingroom,2026-02-02,09:48:08
+User 2,"Sleepingroom: Shutter down, now 5%",2026-02-02,09:48:10
+User 2,"Sleepingroom: Shutter down, now 10%",2026-02-02,09:48:11
+User 2,"Sleepingroom: Shutter open, now 0%",2026-02-02,09:48:13
+User 2,"Sleepingroom: Shutter open, now 0%",2026-02-02,09:48:14
+User 2,"Sleepingroom: Shutter open, now 0%",2026-02-02,09:48:15
+User 2,"Sleepingroom: Shutter open, now 0%",2026-02-02,09:48:17
+>>>>>>> ea4e1380dd1ba8353095e1c12440f4f3a38516fa
