@@ -212,20 +212,17 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
 
     # Raumauswahl
     elif state == ROOM_SELECT:                 
-        #wenn Zeigefinger dann Raum 1 und zur Auswahl ob Rollo oder Licht
-        if handshape == "index":                                   
+        if handshape == "index":                                    # wenn Zeigefinger dann Raum 1 und zur Auswahl ob Rollo oder Licht
             selected_room = rooms.get("room_1")
             write_log(current_user, f"{current_user} selected {selected_room.name}")
             state = CONTROL_SELECT
             action_taken = True
-        #wenn Zeigefinger und Mittelfinger dann Raum 2 und zur Auswahl ob Rollo oder Licht
-        elif handshape == "index_middle":                          
+        elif handshape == "index_middle":                           # wenn Zeigefinger und Mittelfinger dann Raum 2 und zur Auswahl ob Rollo oder Licht
             selected_room = rooms.get("room_2")
             write_log(current_user, f"{current_user} selected {selected_room.name}")
             state = CONTROL_SELECT
             action_taken = True
-        #wenn Zeigefinger, Mittelfinger und kleiner Finger dann zurück zur Userauswahl
-        elif handshape == "thumb_middle_pinky":                    
+        elif handshape == "thumb_middle_pinky":                     # wenn Zeigefinger, Mittelfinger und kleiner Finger dann zurück zur Userauswahl
             write_log(current_user, f"{current_user} returned to USER_SELECT")
             state = USER_SELECT
             current_user = None
@@ -234,63 +231,60 @@ def get_gesture_action(state, current_user, selected_room, frame, rooms):
 
     #Auswahl ob Rollo oder Licht
     elif state == CONTROL_SELECT:         
-        #wenn Zeigefinger dann Lichtsteuerung
-        if handshape == "index":                                    
+        if handshape == "index":                                    # wenn Zeigefinger dann Lichtsteuerung                    
             state = LIGHT_CONTROL
             action_taken = True
-        #wenn Zeigefinger und Mittelfinger dann Rollosteuerung
-        elif handshape == "index_middle":                           
+        elif handshape == "index_middle":                           # wenn Zeigefinger und Mittelfinger dann Rollosteuerung         
             state = SHUTTER_CONTROL
             action_taken = True
-        #wenn Daumen und Mittelfinger dann zurück zur Raumauswahl
-        elif handshape == "thumb_middle":                           
+        elif handshape == "thumb_middle":                           # wenn Daumen und Mittelfinger dann zurück zur Raumauswahl      
             state = ROOM_SELECT
             selected_room = None
             action_taken = True
 
     #Lichtsteuerung
     elif state == LIGHT_CONTROL:  
-        #wenn Zeigefinger, dann eine Stufe heller                                 
-        if handshape == "index":                                    
+                                        
+        if handshape == "index":                                    # wenn Zeigefinger, dann eine Stufe heller               
             control_light(selected_room, "up", current_user)
             action_taken = True
-        #wenn Zeigefinger und Mittelfinger, dann eine Stufe dunkler
-        elif handshape == "index_middle":                           
+       
+        elif handshape == "index_middle":                           # wenn Zeigefinger und Mittelfinger, dann eine Stufe dunkler 
             control_light(selected_room, "down", current_user)
             action_taken = True
-        #wenn alle Finge, dann Licht komplett aus
-        elif handshape == "open":                                   
+        
+        elif handshape == "open":                                   # wenn alle Finge, dann Licht komplett aus              
             control_light(selected_room, "off", current_user)
             action_taken = True
-        #wenn kleiner Finger, dann Licht komplett an
-        elif handshape == "pinky":                                  
+        
+        elif handshape == "pinky":                                  # wenn kleiner Finger, dann Licht komplett an            
             control_light(selected_room, "on", current_user)
             action_taken = True
-        #wenn Mittelfinger, dann zurück zur Auswahl ob Rollo oder Licht
-        elif handshape == "middle":                                 
+        
+        elif handshape == "middle":                                 # wenn Mittelfinger, dann zurück zur Auswahl ob Rollo oder Licht 
             state = CONTROL_SELECT
             action_taken = True
 
     #Rollosteuerung
     elif state == SHUTTER_CONTROL:      
-        #wenn Zeigefinger, dann eine Stufe auf                            
-        if handshape == "index":                                    
+                                
+        if handshape == "index":                                    # wenn Zeigefinger, dann eine Stufe auf            
             control_shutter(selected_room, "up", current_user)
             action_taken = True
-        #wenn Zeigefinger und Mittelfinger dann eine Stufe zu
-        elif handshape == "index_middle":                           
+        
+        elif handshape == "index_middle":                           # wenn Zeigefinger und Mittelfinger dann eine Stufe zu     
             control_shutter(selected_room, "down", current_user)
             action_taken = True
-        #wenn alle Finger, dann Rollo ganz auf
-        elif handshape == "open":                                  
+        
+        elif handshape == "open":                                   # wenn alle Finger, dann Rollo ganz auf                 
             control_shutter(selected_room, "open", current_user)
             action_taken = True
-        #wenn kleiner Finger, dann Rollo ganz zu 
-        elif handshape == "pinky":                                  
+        
+        elif handshape == "pinky":                                  # wenn kleiner Finger, dann Rollo ganz zu                 
             control_shutter(selected_room, "close", current_user)
             action_taken = True
-        #wenn Mittelfinger, dann zurück zur Auswahl ob Rollo oder Licht
-        elif handshape == "middle":                                 
+        
+        elif handshape == "middle":                                 # wenn Mittelfinger, dann zurück zur Auswahl ob Rollo oder Licht
             state = CONTROL_SELECT
             action_taken = True
 
