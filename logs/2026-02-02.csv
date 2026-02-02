@@ -1,0 +1,23 @@
+UserLogin,Aktion,Datum,Zeit
+User 1,login User 1,2026-02-02,07:47:18
+User 1,User 1 selected Kitchen,2026-02-02,07:47:19
+User 1,"Kitchen: Light up, now 10%",2026-02-02,07:47:23
+User 1,"Kitchen: Light up, now 20%",2026-02-02,07:47:24
+User 1,"Kitchen: Light up, now 30%",2026-02-02,07:47:25
+User 1,"Kitchen: Light up, now 40%",2026-02-02,07:47:26
+User 1,"Kitchen: Light down, now 30%",2026-02-02,07:47:27
+User 1,"Kitchen: Light down, now 20%",2026-02-02,07:47:29
+User 1,"Kitchen: Light on, now 100%",2026-02-02,07:47:30
+User 1,"Kitchen: Light off, now 0%",2026-02-02,07:47:31
+User 1,"Kitchen: Light up, now 10%",2026-02-02,07:47:37
+User 1,"Kitchen: Light up, now 20%",2026-02-02,07:47:38
+User 1,"Kitchen: Light down, now 10%",2026-02-02,07:47:39
+User 1,"Kitchen: Light on, now 100%",2026-02-02,07:47:41
+User 1,"Kitchen: Light on, now 100%",2026-02-02,07:47:46
+User 1,"Kitchen: Light down, now 90%",2026-02-02,07:47:47
+User 1,"Kitchen: Shutter down, now 5%",2026-02-02,07:47:52
+User 1,"Kitchen: Shutter up, now 0%",2026-02-02,07:47:53
+User 1,"Kitchen: Shutter down, now 5%",2026-02-02,07:47:54
+User 1,"Kitchen: Shutter down, now 10%",2026-02-02,07:47:55
+User 1,"Kitchen: Shutter down, now 15%",2026-02-02,07:47:56
+User 1,User 1 returned to USER_SELECT,2026-02-02,07:48:01
