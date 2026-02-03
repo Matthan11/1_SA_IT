@@ -1,0 +1,60 @@
+UserLogin,Aktion,Datum,Zeit
+User 1,login User 1,2026-02-03,13:45:11
+User 1,User 1 selected Kitchen,2026-02-03,13:45:12
+User 1,"Kitchen: Light up, now 10%",2026-02-03,13:45:14
+User 1,"Kitchen: Light up, now 20%",2026-02-03,13:45:16
+User 1,"Kitchen: Light up, now 30%",2026-02-03,13:45:17
+User 1,"Kitchen: Light up, now 40%",2026-02-03,13:45:18
+User 1,"Kitchen: Light down, now 30%",2026-02-03,13:45:19
+User 1,"Kitchen: Light on, now 100%",2026-02-03,13:45:21
+User 1,"Kitchen: Light off, now 0%",2026-02-03,13:45:22
+User 1,User 1 returned to USER_SELECT,2026-02-03,13:45:26
+User 1,login User 1,2026-02-03,14:04:28
+User 1,User 1 selected Kitchen,2026-02-03,14:04:33
+User 1,User 1 returned to USER_SELECT,2026-02-03,14:04:42
+User 1,login User 1,2026-02-03,14:04:49
+User 1,User 1 selected Kitchen,2026-02-03,14:05:39
+User 1,"Kitchen: Light on, now 100%",2026-02-03,14:06:01
+User 1,"Kitchen: Light off, now 0%",2026-02-03,14:06:05
+User 1,"Kitchen: Light up, now 10%",2026-02-03,14:06:08
+User 1,"Kitchen: Light up, now 20%",2026-02-03,14:06:10
+User 1,"Kitchen: Light up, now 30%",2026-02-03,14:06:11
+User 1,"Kitchen: Light up, now 40%",2026-02-03,14:06:12
+User 1,"Kitchen: Light up, now 50%",2026-02-03,14:06:13
+User 1,"Kitchen: Light down, now 40%",2026-02-03,14:06:14
+User 1,"Kitchen: Light down, now 30%",2026-02-03,14:06:16
+User 1,"Kitchen: Light up, now 40%",2026-02-03,14:06:20
+User 1,"Kitchen: Light up, now 50%",2026-02-03,14:06:28
+User 1,"Kitchen: Shutter up, now 0%",2026-02-03,14:06:35
+User 1,"Kitchen: Shutter up, now 0%",2026-02-03,14:06:36
+User 1,"Kitchen: Shutter down, now 5%",2026-02-03,14:06:38
+User 1,"Kitchen: Shutter down, now 10%",2026-02-03,14:06:39
+User 1,"Kitchen: Shutter down, now 15%",2026-02-03,14:06:40
+User 1,"Kitchen: Shutter down, now 20%",2026-02-03,14:06:41
+User 1,"Kitchen: Shutter open, now 0%",2026-02-03,14:06:42
+User 1,"Kitchen: Shutter open, now 0%",2026-02-03,14:06:44
+User 1,"Kitchen: Shutter close, now 50%",2026-02-03,14:06:45
+User 1,"Kitchen: Shutter close, now 50%",2026-02-03,14:06:46
+User 1,"Kitchen: Shutter up, now 45%",2026-02-03,14:06:48
+User 1,User 1 returned to USER_SELECT,2026-02-03,14:06:52
+User 1,login User 1,2026-02-03,14:06:56
+User 1,User 1 selected Sleepingroom,2026-02-03,14:06:58
+User 1,User 1 returned to USER_SELECT,2026-02-03,14:07:03
+User 2,login User 2,2026-02-03,14:07:05
+User 2,User 2 selected Kitchen,2026-02-03,14:07:13
+User 2,User 2 returned to USER_SELECT,2026-02-03,14:07:16
+User 1,login User 1,2026-02-03,14:07:17
+User 1,User 1 selected Sleepingroom,2026-02-03,14:07:22
+User 1,"Sleepingroom: Light up, now 10%",2026-02-03,14:07:29
+User 1,"Sleepingroom: Light up, now 20%",2026-02-03,14:07:30
+User 1,"Sleepingroom: Light up, now 30%",2026-02-03,14:07:31
+User 1,"Sleepingroom: Light off, now 0%",2026-02-03,14:07:32
+User 1,"Sleepingroom: Light on, now 100%",2026-02-03,14:07:34
+User 1,"Sleepingroom: Light on, now 100%",2026-02-03,14:07:35
+User 1,"Sleepingroom: Light down, now 90%",2026-02-03,14:07:36
+User 1,"Sleepingroom: Light down, now 80%",2026-02-03,14:07:37
+User 1,"Sleepingroom: Light up, now 90%",2026-02-03,14:07:42
+User 1,"Sleepingroom: Light up, now 100%",2026-02-03,14:07:46
+User 1,User 1 returned to USER_SELECT,2026-02-03,14:07:49
+User 2,login User 2,2026-02-03,14:07:54
+User 2,User 2 selected Kitchen,2026-02-03,14:10:25
